@@ -1,0 +1,31 @@
+<article class="post">
+  <div class="title">
+    <h4>{{post.title}}</h4>
+    <p class="white-text">Written by {{post.user.username}} on {{format_date post.created_at}}</p>
+  </div>
+  <div class="content">
+      <p>{{post.content}}</p>
+  </div>
+  <div class="meta">
+      
+    <a href="/post/{{post.id}}">{{post.comments.length}} comment(s)</a>
+  </div>
+</article>
+
+{{#if loggedIn}}
+<form class="comment-form">
+  <div>
+    <textarea class="comment-body" name="comment-body"></textarea>
+  </div>
+
+  <div>
+    <button class="submit" type="submit">add comment</button>
+  </div>
+</form>
+{{/if}}
+
+{{>comments post.comments}}
+
+{{#if loggedIn}}
+<script src="/javascript/comment.js"></script>
+{{/if}}

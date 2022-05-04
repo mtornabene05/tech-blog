@@ -2,24 +2,24 @@ async function signupFormHandler(event) {
     event.preventDefault();
     
   
-    const username = document.querySelector('#username-signup').value.trim();
-    const email = document.querySelector('#email-signup').value.trim();
-    const password = document.querySelector('#password-signup').value.trim();
+    const usernameEl = document.querySelector('#username-signup').value.trim();
+    const emailEl = document.querySelector('#email-signup').value.trim();
+    const passwordEl = document.querySelector('#password-signup').value.trim();
   
-    if (username && email && password) {
+    if (usernameEl && emailEl && passwordEl) {
       const response = await fetch('/api/users', {
         method: 'post',
         body: JSON.stringify({
-          username,
-          email,
-          password
+          username: usernameEl,
+          email: emailEl,
+          password: passwordEl
         }),
         headers: { 'Content-Type': 'application/json' }
       });
       console.log(response);
       // check the response status
       if (response.ok) {
-        document.location.replace('/login');
+        document.location.replace('/dashboard');
       } else {
         alert(response.statusText);
       }
